@@ -7,8 +7,13 @@ struct matrix4x4 {
 	float m_41, m_42, m_43, m_44;
 };
 
-struct matrix4x4 createLookAtMatrixLH(struct vector3 eye, struct vector3 at, struct vector3 up);
-struct matrix4x4 createLookAtMatrixRH(struct vector3 eye, struct vector3 at, struct vector3 up);
-float determinant(struct matrix4x4 m);
-struct matrix4x4 adjugate(struct matrix4x4 m);
-struct matrix4x4 inverse(struct matrix4x4 m, int* success);
+struct matrix4x4 matrix4x4CreateLookAtMatrixLH(struct vector3 eye, struct vector3 at, struct vector3 up);
+struct matrix4x4 matrix4x4CreateLookAtMatrixRH(struct vector3 eye, struct vector3 at, struct vector3 up);
+float matrix4x4Determinant(struct matrix4x4 m);
+struct matrix4x4 matrix4x4Adjugate(struct matrix4x4 m);
+struct matrix4x4 matrix4x4Inverse(struct matrix4x4 m, int* success);
+struct matrix4x4 matrix4x4Transpose(struct matrix4x4 m);
+struct matrix4x4 matrix4x4Add(struct matrix4x4 a, struct matrix4x4 b);
+struct matrix4x4 matrix4x4Subtract(struct matrix4x4 a, struct matrix4x4 b);
+struct matrix4x4 matrix4x4Multiply(struct matrix4x4 a, struct matrix4x4 b);
+struct matrix4x4 matrix4x4MultiplyScalar(struct matrix4x4 m, float scalar);

@@ -1,7 +1,7 @@
 #include "vector3.h"
 #include <math.h>
 
-struct vector3 normalize(struct vector3 v) {
+struct vector3 vector3Normalize(struct vector3 v) {
     float length = sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
 
     return (struct vector3) {
@@ -11,11 +11,11 @@ struct vector3 normalize(struct vector3 v) {
     };
 }
 
-float magnitude(struct vector3 v) {
+float vector3Magnitude(struct vector3 v) {
     return sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
 }
 
-struct vector3 add(struct vector3 v1, struct vector3 v2) {
+struct vector3 vector3Add(struct vector3 v1, struct vector3 v2) {
     return (struct vector3) {
         .x = v1.x + v2.x,
         .y = v1.y + v2.y,
@@ -23,7 +23,7 @@ struct vector3 add(struct vector3 v1, struct vector3 v2) {
     };
 }
 
-struct vector3 adds(struct vector3 v, float s) {
+struct vector3 vector3Adds(struct vector3 v, float s) {
     return (struct vector3) {
         .x = v.x + s,
         .y = v.y + s,
@@ -31,7 +31,7 @@ struct vector3 adds(struct vector3 v, float s) {
     };
 }
 
-struct vector3 subtract(struct vector3 v1, struct vector3 v2) {
+struct vector3 vector3Subtract(struct vector3 v1, struct vector3 v2) {
     return (struct vector3) {
         .x = v1.x - v2.x,
         .y = v1.y - v2.y,
@@ -39,7 +39,7 @@ struct vector3 subtract(struct vector3 v1, struct vector3 v2) {
     };
 }
 
-struct vector3 subtracts(struct vector3 v, float s) {
+struct vector3 vector3Subtracts(struct vector3 v, float s) {
     return (struct vector3) {
         .x = v.x - s,
         .y = v.y - s,
@@ -47,7 +47,7 @@ struct vector3 subtracts(struct vector3 v, float s) {
     };
 }
 
-struct vector3 multiply(struct vector3 v1, struct vector3 v2) {
+struct vector3 vector3Multiply(struct vector3 v1, struct vector3 v2) {
     return (struct vector3) {
         .x = v1.x * v2.x,
         .y = v1.y * v2.y,
@@ -55,7 +55,7 @@ struct vector3 multiply(struct vector3 v1, struct vector3 v2) {
     };
 }
 
-struct vector3 multiplys(struct vector3 v, float s) {
+struct vector3 vector3Multiplys(struct vector3 v, float s) {
     return (struct vector3) {
         .x = v.x * s,
         .y = v.y * s,
@@ -63,7 +63,7 @@ struct vector3 multiplys(struct vector3 v, float s) {
     };
 }
 
-struct vector3 divide(struct vector3 v1, struct vector3 v2) {
+struct vector3 vector3Divide(struct vector3 v1, struct vector3 v2) {
     return (struct vector3) {
         .x = v1.x / v2.x,
         .y = v1.y / v2.y,
@@ -71,7 +71,7 @@ struct vector3 divide(struct vector3 v1, struct vector3 v2) {
     };
 }
 
-struct vector3 divides(struct vector3 v, float s) {
+struct vector3 vector3Divides(struct vector3 v, float s) {
     return (struct vector3) {
         .x = v.x / s,
         .y = v.y / s,
@@ -79,7 +79,7 @@ struct vector3 divides(struct vector3 v, float s) {
     };
 }
 
-struct vector3 cross(struct vector3 v1, struct vector3 v2) {
+struct vector3 vector3Cross(struct vector3 v1, struct vector3 v2) {
     return (struct vector3) {
         .x = v1.y * v2.z - v1.z * v2.y,
         .y = v1.z * v2.x - v1.x * v2.z,
@@ -87,37 +87,37 @@ struct vector3 cross(struct vector3 v1, struct vector3 v2) {
     };
 }
 
-float dot(struct vector3 v1, struct vector3 v2) {
+float vector3Dot(struct vector3 v1, struct vector3 v2) {
     return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 }
 
-float distanceTo(struct vector3 v1, struct vector3 v2) {
+float vector3DistanceTo(struct vector3 v1, struct vector3 v2) {
     return sqrtf(
         (v1.x - v2.x) * (v1.x - v2.x)
         + (v1.y - v2.y) * (v1.y - v2.y)
         + (v1.z - v2.z) * (v1.z - v2.z));
 }
 
-float angleBetween(struct vector3 v1, struct vector3 v2) {
-    float dotProduct = dot(v1, v2);
-    float magnitudes = magnitude(v1) * magnitude(v2);
+float vector3AngleBetween(struct vector3 v1, struct vector3 v2) {
+    float dotProduct = vector3Dot(v1, v2);
+    float magnitudes = vector3Magnitude(v1) * vector3Magnitude(v2);
 
     return acosf(dotProduct / magnitudes);
 }
 
-float angleTo(struct vector3 v1, struct vector3 v2) {
-    return atan2f(magnitude(cross(v1, v2)), dot(v1, v2));
+float vector3AngleTo(struct vector3 v1, struct vector3 v2) {
+    return atan2f(vector3Magnitude(vector3Cross(v1, v2)), vector3Dot(v1, v2));
 }
 
-struct vector3 reflect(struct vector3 v, struct vector3 normal) {
-    return subtract(v, multiplys(normal, 2 * dot(v, normal)));
+struct vector3 vector3Reflect(struct vector3 v, struct vector3 normal) {
+    return vector3Subtract(v, vector3Multiplys(normal, 2 * vector3Dot(v, normal)));
 }
 
-struct vector3 lerp(struct vector3 v1, struct vector3 v2, float t) {
-    return add(multiplys(v1, 1.0f - t), multiplys(v2, t));
+struct vector3 vector3Lerp(struct vector3 v1, struct vector3 v2, float t) {
+    return vector3Add(vector3Multiplys(v1, 1.0f - t), vector3Multiplys(v2, t));
 }
 
-struct vector3 clamp(struct vector3 v, struct vector3 min, struct vector3 max) {
+struct vector3 vector3Clamp(struct vector3 v, struct vector3 min, struct vector3 max) {
     return (struct vector3) {
         .x = fmaxf(min.x, fminf(v.x, max.x)),
         .y = fmaxf(min.y, fminf(v.y, max.y)),
@@ -125,7 +125,7 @@ struct vector3 clamp(struct vector3 v, struct vector3 min, struct vector3 max) {
     };
 }
 
-struct vector3 midpoint(struct vector3 v1, struct vector3 v2) {
+struct vector3 vector3Midpoint(struct vector3 v1, struct vector3 v2) {
     return (struct vector3) {
         .x = (v1.x + v2.x) / 2.0f,
         .y = (v1.y + v2.y) / 2.0f,
@@ -133,33 +133,33 @@ struct vector3 midpoint(struct vector3 v1, struct vector3 v2) {
     };
 }
 
-struct vector3 projectOnto(struct vector3 v1, struct vector3 v2) {
-    float dotProduct = dot(v1, v2);
-    float otherMagnitudeSquared = magnitude(v2) * magnitude(v2);
+struct vector3 vector3ProjectOnto(struct vector3 v1, struct vector3 v2) {
+    float dotProduct = vector3Dot(v1, v2);
+    float otherMagnitudeSquared = vector3Magnitude(v2) * vector3Magnitude(v2);
 
-    return multiplys(v2, dotProduct / otherMagnitudeSquared);
+    return vector3Multiplys(v2, dotProduct / otherMagnitudeSquared);
 }
 
-struct vector3 perpendicularTo(struct vector3 v1, struct vector3 v2) {
-    return subtract(v1, projectOnto(v1, v2));
+struct vector3 vector3PerpendicularTo(struct vector3 v1, struct vector3 v2) {
+    return vector3Subtract(v1, vector3ProjectOnto(v1, v2));
 }
 
-float tripleProduct(struct vector3 v, struct vector3 v1, struct vector3 v2) {
-    return dot(v, cross(v1, v2));
+float vector3TripleProduct(struct vector3 v, struct vector3 v1, struct vector3 v2) {
+    return vector3Dot(v, vector3Cross(v1, v2));
 }
 
-struct vector3 rotateAroundAxis(struct vector3 v, struct vector3 axis, float angle) {
-    struct vector3 normalizedAxis = normalize(axis);
+struct vector3 vector3RotateAroundAxis(struct vector3 v, struct vector3 axis, float angle) {
+    struct vector3 normalizedAxis = vector3Normalize(axis);
     float cosAngle = cosf(angle);
     float sinAngle = sinf(angle);
 
-    return add(
-        add(multiplys(v, cosAngle), multiplys(cross(normalizedAxis, v), sinAngle)),
-        multiplys(normalizedAxis, dot(normalizedAxis, v) * (1.0f - cosAngle))
+    return vector3Add(
+        vector3Add(vector3Multiplys(v, cosAngle), vector3Multiplys(vector3Cross(normalizedAxis, v), sinAngle)),
+        vector3Multiplys(normalizedAxis, vector3Dot(normalizedAxis, v) * (1.0f - cosAngle))
     );
 }
 
-struct vector3 rotateX(struct vector3 v, float angle) {
+struct vector3 vector3RotateX(struct vector3 v, float angle) {
     float cosAngle = cosf(angle);
     float sinAngle = sinf(angle);
 
@@ -170,7 +170,7 @@ struct vector3 rotateX(struct vector3 v, float angle) {
     };
 }
 
-struct vector3 rotateY(struct vector3 v, float angle) {
+struct vector3 vector3RotateY(struct vector3 v, float angle) {
     float cosAngle = cosf(angle);
     float sinAngle = sinf(angle);
 
@@ -181,7 +181,7 @@ struct vector3 rotateY(struct vector3 v, float angle) {
     };
 }
 
-struct vector3 rotateZ(struct vector3 v, float angle) {
+struct vector3 vector3RotateZ(struct vector3 v, float angle) {
     float cosAngle = cosf(angle);
     float sinAngle = sinf(angle);
 
@@ -192,7 +192,7 @@ struct vector3 rotateZ(struct vector3 v, float angle) {
     };
 }
 
-struct vector3 negate(struct vector3 v) {
+struct vector3 vector3Negate(struct vector3 v) {
     return (struct vector3) {
         .x = -v.x,
         .y = -v.y,
@@ -200,7 +200,7 @@ struct vector3 negate(struct vector3 v) {
     };
 }
 
-struct vector3 absv(struct vector3 v) {
+struct vector3 vector3Abs(struct vector3 v) {
     return (struct vector3) {
         .x = fabsf(v.x),
         .y = fabsf(v.y),
@@ -208,15 +208,15 @@ struct vector3 absv(struct vector3 v) {
     };
 }
 
-float maxComponent(struct vector3 v) {
+float vector3MaxComponent(struct vector3 v) {
     return fmaxf(fmaxf(v.x, v.y), v.z);
 }
 
-float minComponent(struct vector3 v) {
+float vector3MinComponent(struct vector3 v) {
     return fminf(fminf(v.x, v.y), v.z);
 }
 
-struct vector3 powv(struct vector3 v, float exponent) {
+struct vector3 vector3Pow(struct vector3 v, float exponent) {
     return (struct vector3) {
         .x = powf(v.x, exponent),
         .y = powf(v.y, exponent),
@@ -224,7 +224,7 @@ struct vector3 powv(struct vector3 v, float exponent) {
     };
 }
 
-struct vector3 sqrtv(struct vector3 v) {
+struct vector3 vector3Sqrt(struct vector3 v) {
     return (struct vector3) {
         .x = sqrtf(v.x),
         .y = sqrtf(v.y),
@@ -232,7 +232,7 @@ struct vector3 sqrtv(struct vector3 v) {
     };
 }
 
-struct vector3 minv(struct vector3 v1, struct vector3 v2) {
+struct vector3 vector3Min(struct vector3 v1, struct vector3 v2) {
     return (struct vector3) {
         .x = fminf(v1.x, v2.x),
         .y = fminf(v1.y, v2.y),
@@ -240,7 +240,7 @@ struct vector3 minv(struct vector3 v1, struct vector3 v2) {
     };
 }
 
-struct vector3 maxv(struct vector3 v1, struct vector3 v2) {
+struct vector3 vector3Max(struct vector3 v1, struct vector3 v2) {
     return (struct vector3) {
         .x = fmaxf(v1.x, v2.x),
         .y = fmaxf(v1.y, v2.y),
@@ -248,7 +248,7 @@ struct vector3 maxv(struct vector3 v1, struct vector3 v2) {
     };
 }
 
-struct vector3 roundv(struct vector3 v) {
+struct vector3 vector3Round(struct vector3 v) {
     return (struct vector3) {
         .x = roundf(v.x),
         .y = roundf(v.y),
@@ -256,7 +256,7 @@ struct vector3 roundv(struct vector3 v) {
     };
 }
 
-struct vector3 floorv(struct vector3 v) {
+struct vector3 vector3Floor(struct vector3 v) {
     return (struct vector3) {
         .x = floorf(v.x),
         .y = floorf(v.y),
@@ -264,7 +264,7 @@ struct vector3 floorv(struct vector3 v) {
     };
 }
 
-struct vector3 ceilv(struct vector3 v) {
+struct vector3 vector3Ceil(struct vector3 v) {
     return (struct vector3) {
         .x = ceilf(v.x),
         .y = ceilf(v.y),
@@ -272,7 +272,7 @@ struct vector3 ceilv(struct vector3 v) {
     };
 }
 
-struct vector3 logv(struct vector3 v) {
+struct vector3 vector3Log(struct vector3 v) {
     return (struct vector3) {
         .x = logf(v.x),
         .y = logf(v.y),
@@ -280,7 +280,7 @@ struct vector3 logv(struct vector3 v) {
     };
 }
 
-struct vector3 expv(struct vector3 v) {
+struct vector3 vector3Exp(struct vector3 v) {
     return (struct vector3) {
         .x = expf(v.x),
         .y = expf(v.y),
