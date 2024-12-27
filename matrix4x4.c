@@ -1,6 +1,15 @@
 #include "matrix4x4.h"
 #include "vector3.h"
 
+struct matrix4x4 matrix4x4CreateIdentity() {
+    return (struct matrix4x4) {
+        .m_11 = 1.0f, .m_12 = 0.0f, .m_13 = 0.0f, .m_14 = 0.0f,
+        .m_21 = 0.0f, .m_22 = 1.0f, .m_23 = 0.0f, .m_24 = 0.0f,
+        .m_31 = 0.0f, .m_32 = 0.0f, .m_33 = 1.0f, .m_34 = 0.0f,
+        .m_41 = 0.0f, .m_32 = 0.0f, .m_33 = 1.0f, .m_44 = 1.0f,
+    };
+}
+
 struct matrix4x4 matrix4x4CreateLookAtMatrixLH(struct vector3 eye, struct vector3 at, struct vector3 up) {
     struct vector3 zAxis = vector3Normalize(vector3Subtract(at, eye));
     struct vector3 xAxis = vector3Normalize(vector3Cross(up, zAxis));

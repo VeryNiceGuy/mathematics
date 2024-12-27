@@ -7,6 +7,7 @@ struct matrix4x4 {
 	float m_41, m_42, m_43, m_44;
 };
 
+struct matrix4x4 matrix4x4CreateIdentity();
 struct matrix4x4 matrix4x4CreateLookAtMatrixLH(struct vector3 eye, struct vector3 at, struct vector3 up);
 struct matrix4x4 matrix4x4CreateLookAtMatrixRH(struct vector3 eye, struct vector3 at, struct vector3 up);
 float matrix4x4Determinant(struct matrix4x4 m);
