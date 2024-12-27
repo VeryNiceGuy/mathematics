@@ -1,14 +1,14 @@
 #pragma once
 
-struct quaternion {
+struct Quaternion {
     float w, x, y, z;
 };
 
-struct quaternion quaternionAdd(struct quaternion a, struct quaternion b);
-struct quaternion quaternionSubtract(struct quaternion a, struct quaternion b);
-struct quaternion quaternionMultiply(struct quaternion a, struct quaternion b);
-struct quaternion quaternionMultiplys(struct quaternion q, float s);
-float quaternionMagnitude(struct quaternion q);
-struct quaternion quaternionNormalize(struct quaternion q);
-struct quaternion quaternionConjugate(struct quaternion q);
-struct quaternion quaternionInverse(struct quaternion q);
+struct Quaternion quaternion_add(struct Quaternion a, struct Quaternion b);
+struct Quaternion quaternion_subtract(struct Quaternion a, struct Quaternion b);
+struct Quaternion quaternion_multiply(struct Quaternion a, struct Quaternion b);
+struct Quaternion quaternion_multiplys(struct Quaternion q, float s);
+float quaternion_magnitude(struct Quaternion q);
+struct Quaternion quaternion_normalize(struct Quaternion q);
+struct Quaternion quaternion_conjugate(struct Quaternion q);
+struct Quaternion quaternion_inverse(struct Quaternion q);
