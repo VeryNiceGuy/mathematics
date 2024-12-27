@@ -8,3 +8,7 @@ struct matrix4x4 {
 };
 
 struct matrix4x4 createLookAtMatrixLH(struct vector3 eye, struct vector3 at, struct vector3 up);
+struct matrix4x4 createLookAtMatrixRH(struct vector3 eye, struct vector3 at, struct vector3 up);
+float determinant(struct matrix4x4 m);
+struct matrix4x4 adjugate(struct matrix4x4 m);
+struct matrix4x4 inverse(struct matrix4x4 m, int* success);
