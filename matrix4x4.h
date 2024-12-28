@@ -10,6 +10,10 @@ struct Matrix4x4 {
 struct Matrix4x4 matrix4x4_create_identity();
 struct Matrix4x4 matrix4x4_create_look_at_lh(struct Vector3 eye, struct Vector3 at, struct Vector3 up);
 struct Matrix4x4 matrix4x4_create_look_at_rh(struct Vector3 eye, struct Vector3 at, struct Vector3 up);
+struct Matrix4x4 matrix4x4_perspective_fov_lh_d3d(float fovY, float aspect, float nearZ, float farZ);
+struct Matrix4x4 matrix4x4_perspective_fov_rh_d3d(float fovY, float aspect, float nearZ, float farZ);
+struct Matrix4x4 matrix4x4_perspective_fov_lh_gl(float fovY, float aspect, float nearZ, float farZ);
+struct Matrix4x4 matrix4x4_perspective_fov_rh_gl(float fovY, float aspect, float nearZ, float farZ);
 float matrix4x4_determinant(struct Matrix4x4 m);
 struct Matrix4x4 matrix4x4_adjugate(struct Matrix4x4 m);
 struct Matrix4x4 matrix4x4_inverse(struct Matrix4x4 m, int* success);

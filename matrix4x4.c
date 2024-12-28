@@ -44,6 +44,70 @@ struct Matrix4x4 matrix4x4_create_look_at_rh(struct Vector3 eye, struct Vector3 
     };
 }
 
+struct Matrix4x4 matrix4x4_perspective_fov_lh_d3d(float fovY, float aspect, float nearZ, float farZ) {
+    float h = 1.0f / tanf(fovY / 2.0f);
+    float w = h / aspect;
+
+    float depth = farZ - nearZ;
+    float q = farZ / depth;
+
+    return (struct Matrix4x4) {
+        .m_11 = w, .m_12 = 0.0f, .m_13 = 0.0f, .m_14 = 0.0f,
+        .m_21 = 0.0f, .m_22 = h, .m_23 = 0.0f, .m_24 = 0.0f,
+        .m_31 = 0.0f, .m_32 = 0.0f, .m_33 = q, .m_34 = 1.0f,
+        .m_41 = 0.0f, .m_42 = 0.0f, .m_43 = -nearZ * q, .m_44 = 0.0f
+    };
+}
+
+struct Matrix4x4 matrix4x4_perspective_fov_rh_d3d(float fovY, float aspect, float nearZ, float farZ) {
+    float h = 1.0f / tanf(fovY / 2.0f);
+    float w = h / aspect;
+
+    float depth = nearZ - farZ;
+    float q = farZ / depth;
+
+    return (struct Matrix4x4) {
+        .m_11 = w, .m_12 = 0.0f, .m_13 = 0.0f, .m_14 = 0.0f,
+        .m_21 = 0.0f, .m_22 = h, .m_23 = 0.0f, .m_24 = 0.0f,
+        .m_31 = 0.0f, .m_32 = 0.0f, .m_33 = q, .m_34 = -1.0f,
+        .m_41 = 0.0f, .m_42 = 0.0f, .m_43 = nearZ * q, .m_44 = 0.0f
+    };
+}
+
+struct Matrix4x4 matrix4x4_perspective_fov_lh_gl(float fovY, float aspect, float nearZ, float farZ) {
+    float h = 1.0f / tanf(fovY / 2.0f);
+    float w = h / aspect;
+
+    float depth = farZ - nearZ;
+    float q = (farZ + nearZ) / depth;
+    float qn = (2 * farZ * nearZ) / depth;
+
+    return (struct Matrix4x4) {
+        .m_11 = w, .m_12 = 0.0f, .m_13 = 0.0f, .m_14 = 0.0f,
+        .m_21 = 0.0f, .m_22 = h, .m_23 = 0.0f, .m_24 = 0.0f,
+        .m_31 = 0.0f, .m_32 = 0.0f, .m_33 = q, .m_34 = 1.0f,
+        .m_41 = 0.0f, .m_42 = 0.0f, .m_43 = -qn, .m_44 = 0.0f
+    };
+}
+
+
+struct Matrix4x4 matrix4x4_perspective_fov_rh_gl(float fovY, float aspect, float nearZ, float farZ) {
+    float h = 1.0f / tanf(fovY / 2.0f);
+    float w = h / aspect;
+
+    float depth = nearZ - farZ;
+    float q = (farZ + nearZ) / depth;
+    float qn = (2 * farZ * nearZ) / depth;
+
+    return (struct Matrix4x4) {
+        .m_11 = w, .m_12 = 0.0f, .m_13 = 0.0f, .m_14 = 0.0f,
+        .m_21 = 0.0f, .m_22 = h, .m_23 = 0.0f, .m_24 = 0.0f,
+        .m_31 = 0.0f, .m_32 = 0.0f, .m_33 = q, .m_34 = -1.0f,
+        .m_41 = 0.0f, .m_42 = 0.0f, .m_43 = qn, .m_44 = 0.0f
+    };
+}
+
+
 float matrix4x4_determinant(struct Matrix4x4 m) {
     return m.m_11 * (m.m_22 * (m.m_33 * m.m_44 - m.m_34 * m.m_43) - m.m_23 * (m.m_32 * m.m_44 - m.m_34 * m.m_42) + m.m_24 * (m.m_32 * m.m_43 - m.m_33 * m.m_42))
         - m.m_12 * (m.m_21 * (m.m_33 * m.m_44 - m.m_34 * m.m_43) - m.m_23 * (m.m_31 * m.m_44 - m.m_34 * m.m_41) + m.m_24 * (m.m_31 * m.m_43 - m.m_33 * m.m_41))
