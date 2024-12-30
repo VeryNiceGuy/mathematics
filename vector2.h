@@ -16,3 +16,4 @@ struct Vector2 vector2_divide(struct Vector2 v1, struct Vector2 v2);
 struct Vector2 vector2_divides(struct Vector2 v, float s);
 float vector2_cross(struct Vector2 a, struct Vector2 b);
 float vector3_dot(struct Vector3 v1, struct Vector3 v2);
+float vector2_distance_to(struct Vector2 a, struct Vector2 b);

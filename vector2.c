@@ -1,4 +1,5 @@
 #include "vector2.h"
+#include <math.h>
 
 struct Vector2 vector2_normalize(struct Vector2 v) {
     float length = sqrtf(v.x * v.x + v.y * v.y);
@@ -75,4 +76,9 @@ float vector2_cross(struct Vector2 a, struct Vector2 b) {
 
 float vector2_dot(struct Vector2 v1, struct Vector2 v2) {
     return v1.x * v2.x + v1.y * v2.y;
+}
+
+float vector2_distance_to(struct Vector2 a, struct Vector2 b) {
+    return sqrtf((a.x - b.x) * (a.x - b.x) +
+        (a.y - b.y) * (a.y - b.y));
 }
