@@ -1,7 +1,7 @@
 #pragma once
 
-struct Vector2;
-struct Vector3;
+#include "vector2.h"
+#include "vector3.h"
 
 struct Chain2 {
     struct Vector2* joints;

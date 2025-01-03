@@ -1,6 +1,4 @@
 #include "inverse_kinematics.h"
-#include "vector2.h"
-#include "vector3.h"
 #include <math.h>
 
 void fabrik2(struct Chain2* chain, struct Vector2 target, float tolerance) {
