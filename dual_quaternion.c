@@ -21,7 +21,7 @@ struct DualQuaternion dual_quaternion_multiply(struct DualQuaternion a, struct D
     };
 }
 
-struct DualQuaternion dual_quaternion_multiplys(struct DualQuaternion dq, float scalar) {
+struct DualQuaternion dual_quaternion_multiply_scalar(struct DualQuaternion dq, float scalar) {
     return (struct DualQuaternion) {
         .real = quaternion_multiplys(dq.real, scalar),
         .dual = quaternion_multiplys(dq.dual, scalar)

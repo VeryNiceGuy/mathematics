@@ -7,13 +7,13 @@ struct Vector3 {
 struct Vector3 vector3_normalize(struct Vector3 v);
 float vector3_magnitude(struct Vector3 v);
 struct Vector3 vector3_add(struct Vector3 v1, struct Vector3 v2);
-struct Vector3 vector3_adds(struct Vector3 v, float s);
+struct Vector3 vector3_add_scalar(struct Vector3 v, float s);
 struct Vector3 vector3_subtract(struct Vector3 v1, struct Vector3 v2);
-struct Vector3 vector3_subtracts(struct Vector3 v, float s);
+struct Vector3 vector3_subtract_scalar(struct Vector3 v, float s);
 struct Vector3 vector3_multiply(struct Vector3 v1, struct Vector3 v2);
-struct Vector3 vector3_multiplys(struct Vector3 v, float s);
+struct Vector3 vector3_multiply_scalar(struct Vector3 v, float s);
 struct Vector3 vector3_divide(struct Vector3 v1, struct Vector3 v2);
-struct Vector3 vector3_divides(struct Vector3 v, float s);
+struct Vector3 vector3_divide_scalar(struct Vector3 v, float s);
 struct Vector3 vector3_cross(struct Vector3 v1, struct Vector3 v2);
 float vector3_dot(struct Vector3 v1, struct Vector3 v2);
 float vector3_distance_to(struct Vector3 v1, struct Vector3 v2);

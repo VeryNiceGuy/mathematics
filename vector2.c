@@ -21,7 +21,7 @@ struct Vector2 vector2_add(struct Vector2 v1, struct Vector2 v2) {
     };
 }
 
-struct Vector2 vector2_adds(struct Vector2 v, float s) {
+struct Vector2 vector2_add_scalar(struct Vector2 v, float s) {
     return (struct Vector2) {
         .x = v.x + s,
         .y = v.y + s
@@ -35,7 +35,7 @@ struct Vector2 vector2_subtract(struct Vector2 v1, struct Vector2 v2) {
     };
 }
 
-struct Vector2 vector2_subtracts(struct Vector2 v, float s) {
+struct Vector2 vector2_subtract_scalar(struct Vector2 v, float s) {
     return (struct Vector2) {
         .x = v.x - s,
         .y = v.y - s
@@ -49,7 +49,7 @@ struct Vector2 vector2_multiply(struct Vector2 v1, struct Vector2 v2) {
     };
 }
 
-struct Vector2 vector2_multiplys(struct Vector2 v, float s) {
+struct Vector2 vector2_multiply_scalar(struct Vector2 v, float s) {
     return (struct Vector2) {
         .x = v.x * s,
         .y = v.y * s
@@ -63,7 +63,7 @@ struct Vector2 vector2_divide(struct Vector2 v1, struct Vector2 v2) {
     };
 }
 
-struct Vector2 vector2_divides(struct Vector2 v, float s) {
+struct Vector2 vector2_divide_scalar(struct Vector2 v, float s) {
     return (struct Vector2) {
         .x = v.x / s,
         .y = v.y / s
@@ -133,7 +133,7 @@ struct Vector2 vector2_min(struct Vector2 v1, struct Vector2 v2) {
     };
 }
 
-struct Vector2 vector3_max(struct Vector2 v1, struct Vector2 v2) {
+struct Vector2 vector2_max(struct Vector2 v1, struct Vector2 v2) {
     return (struct Vector2) {
         .x = fmaxf(v1.x, v2.x),
         .y = fmaxf(v1.y, v2.y)

@@ -23,7 +23,7 @@ struct Vector3 vector3_add(struct Vector3 v1, struct Vector3 v2) {
     };
 }
 
-struct Vector3 vector3_adds(struct Vector3 v, float s) {
+struct Vector3 vector3_add_scalar(struct Vector3 v, float s) {
     return (struct Vector3) {
         .x = v.x + s,
         .y = v.y + s,
@@ -39,7 +39,7 @@ struct Vector3 vector3_subtract(struct Vector3 v1, struct Vector3 v2) {
     };
 }
 
-struct Vector3 vector3_subtracts(struct Vector3 v, float s) {
+struct Vector3 vector3_subtract_scalar(struct Vector3 v, float s) {
     return (struct Vector3) {
         .x = v.x - s,
         .y = v.y - s,
@@ -55,7 +55,7 @@ struct Vector3 vector3_multiply(struct Vector3 v1, struct Vector3 v2) {
     };
 }
 
-struct Vector3 vector3_multiplys(struct Vector3 v, float s) {
+struct Vector3 vector3_multiply_scalar(struct Vector3 v, float s) {
     return (struct Vector3) {
         .x = v.x * s,
         .y = v.y * s,
@@ -71,7 +71,7 @@ struct Vector3 vector3_divide(struct Vector3 v1, struct Vector3 v2) {
     };
 }
 
-struct Vector3 vector3_divides(struct Vector3 v, float s) {
+struct Vector3 vector3_divide_scalar(struct Vector3 v, float s) {
     return (struct Vector3) {
         .x = v.x / s,
         .y = v.y / s,
@@ -110,11 +110,11 @@ float vector3_angle_to(struct Vector3 v1, struct Vector3 v2) {
 }
 
 struct Vector3 vector3_reflect(struct Vector3 v, struct Vector3 normal) {
-    return vector3_subtract(v, vector3_multiplys(normal, 2 * vector3_dot(v, normal)));
+    return vector3_subtract(v, vector3_multiply_scalar(normal, 2 * vector3_dot(v, normal)));
 }
 
 struct Vector3 vector3_lerp(struct Vector3 v1, struct Vector3 v2, float t) {
-    return vector3_add(vector3_multiplys(v1, 1.0f - t), vector3_multiplys(v2, t));
+    return vector3_add(vector3_multiply_scalar(v1, 1.0f - t), vector3_multiply_scalar(v2, t));
 }
 
 struct Vector3 vector3_clamp(struct Vector3 v, struct Vector3 min, struct Vector3 max) {
@@ -137,7 +137,7 @@ struct Vector3 vector3_project_onto(struct Vector3 v1, struct Vector3 v2) {
     float dotProduct = vector3_dot(v1, v2);
     float otherMagnitudeSquared = vector3_magnitude(v2) * vector3_magnitude(v2);
 
-    return vector3_multiplys(v2, dotProduct / otherMagnitudeSquared);
+    return vector3_multiply_scalar(v2, dotProduct / otherMagnitudeSquared);
 }
 
 struct Vector3 vector3_perpendicular_to(struct Vector3 v1, struct Vector3 v2) {
@@ -154,8 +154,8 @@ struct Vector3 vector3_rotate_around_axis(struct Vector3 v, struct Vector3 axis,
     float sinAngle = sinf(angle);
 
     return vector3_add(
-        vector3_add(vector3_multiplys(v, cosAngle), vector3_multiplys(vector3_cross(normalizedAxis, v), sinAngle)),
-        vector3_multiplys(normalizedAxis, vector3_dot(normalizedAxis, v) * (1.0f - cosAngle))
+        vector3_add(vector3_multiply_scalar(v, cosAngle), vector3_multiply_scalar(vector3_cross(normalizedAxis, v), sinAngle)),
+        vector3_multiply_scalar(normalizedAxis, vector3_dot(normalizedAxis, v) * (1.0f - cosAngle))
     );
 }
 

@@ -21,4 +21,4 @@ struct Matrix4x4 matrix4x4_transpose(struct Matrix4x4 m);
 struct Matrix4x4 matrix4x4_add(struct Matrix4x4 a, struct Matrix4x4 b);
 struct Matrix4x4 matrix4x4_subtract(struct Matrix4x4 a, struct Matrix4x4 b);
 struct Matrix4x4 matrix4x4_multiply(struct Matrix4x4 a, struct Matrix4x4 b);
-struct Matrix4x4 matrix4x4_multiplys(struct Matrix4x4 m, float scalar);
+struct Matrix4x4 matrix4x4_multiply_scalar(struct Matrix4x4 m, float scalar);
