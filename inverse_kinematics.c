@@ -10,7 +10,7 @@ void fabrik2(struct Chain2* chain, struct Vector2 target, float tolerance) {
         for (i = 0; i < chain->num_joints - 1; ++i) {
             float r = vector2_distance_to(chain->joints[i], target);
             float lambda = chain->lengths[i] / r;
-            chain->joints[i + 1] = vector2_add(chain->joints[i], vector2_multiplys(vector2_subtract(target, chain->joints[i]), lambda));
+            chain->joints[i + 1] = vector2_add(chain->joints[i], vector2_multiply_scalar(vector2_subtract(target, chain->joints[i]), lambda));
         }
     }
     else {
@@ -20,7 +20,7 @@ void fabrik2(struct Chain2* chain, struct Vector2 target, float tolerance) {
             for (i = chain->num_joints - 2; i >= 0; --i) {
                 float r = vector2_distance_to(chain->joints[i + 1], chain->joints[i]);
                 float lambda = chain->lengths[i] / r;
-                chain->joints[i] = vector2_add(chain->joints[i + 1], vector2_multiplys(vector2_subtract(chain->joints[i], chain->joints[i + 1]), lambda));
+                chain->joints[i] = vector2_add(chain->joints[i + 1], vector2_multiply_scalar(vector2_subtract(chain->joints[i], chain->joints[i + 1]), lambda));
             }
 
             chain->joints[0] = (struct Vector2){ 0, 0 };
@@ -28,7 +28,7 @@ void fabrik2(struct Chain2* chain, struct Vector2 target, float tolerance) {
             for (i = 0; i < chain->num_joints - 1; ++i) {
                 float r = vector2_distance_to(chain->joints[i + 1], chain->joints[i]);
                 float lambda = chain->lengths[i] / r;
-                chain->joints[i + 1] = vector2_add(chain->joints[i], vector2_multiplys(vector2_subtract(chain->joints[i + 1], chain->joints[i]), lambda));
+                chain->joints[i + 1] = vector2_add(chain->joints[i], vector2_multiply_scalar(vector2_subtract(chain->joints[i + 1], chain->joints[i]), lambda));
             }
 
             if (vector2_distance_to(chain->joints[chain->num_joints - 1], target) < tolerance) {
@@ -47,7 +47,7 @@ void fabrik3(struct Chain3* chain, struct Vector3 target, float tolerance) {
         for (i = 0; i < chain->num_joints - 1; ++i) {
             float r = vector3_distance_to(chain->joints[i], target);
             float lambda = chain->lengths[i] / r;
-            chain->joints[i + 1] = vector3_add(chain->joints[i], vector3_multiplys(vector3_subtract(target, chain->joints[i]), lambda));
+            chain->joints[i + 1] = vector3_add(chain->joints[i], vector3_multiply_scalar(vector3_subtract(target, chain->joints[i]), lambda));
         }
     }
     else {
@@ -57,7 +57,7 @@ void fabrik3(struct Chain3* chain, struct Vector3 target, float tolerance) {
             for (i = chain->num_joints - 2; i >= 0; --i) {
                 float r = vector3_distance_to(chain->joints[i + 1], chain->joints[i]);
                 float lambda = chain->lengths[i] / r;
-                chain->joints[i] = vector3_add(chain->joints[i + 1], vector3_multiplys(vector3_subtract(chain->joints[i], chain->joints[i + 1]), lambda));
+                chain->joints[i] = vector3_add(chain->joints[i + 1], vector3_multiply_scalar(vector3_subtract(chain->joints[i], chain->joints[i + 1]), lambda));
             }
 
             chain->joints[0] = (struct Vector3){ 0, 0, 0 };
@@ -65,7 +65,7 @@ void fabrik3(struct Chain3* chain, struct Vector3 target, float tolerance) {
             for (i = 0; i < chain->num_joints - 1; ++i) {
                 float r = vector3_distance_to(chain->joints[i + 1], chain->joints[i]);
                 float lambda = chain->lengths[i] / r;
-                chain->joints[i + 1] = vector3_add(chain->joints[i], vector3_multiplys(vector3_subtract(chain->joints[i + 1], chain->joints[i]), lambda));
+                chain->joints[i + 1] = vector3_add(chain->joints[i], vector3_multiply_scalar(vector3_subtract(chain->joints[i + 1], chain->joints[i]), lambda));
             }
 
             if (vector3_distance_to(chain->joints[chain->num_joints - 1], target) < tolerance) {

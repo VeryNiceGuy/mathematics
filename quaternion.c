@@ -28,7 +28,7 @@ struct Quaternion quaternion_multiply(struct Quaternion a, struct Quaternion b) 
     };
 }
 
-struct Quaternion quaternion_multiplys(struct Quaternion q, float scalar) {
+struct Quaternion quaternion_multiply_scalar(struct Quaternion q, float scalar) {
     return (struct Quaternion) {
         .w = q.w * scalar,
         .x = q.x * scalar,

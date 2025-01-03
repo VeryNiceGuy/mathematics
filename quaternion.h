@@ -7,7 +7,7 @@ struct Quaternion {
 struct Quaternion quaternion_add(struct Quaternion a, struct Quaternion b);
 struct Quaternion quaternion_subtract(struct Quaternion a, struct Quaternion b);
 struct Quaternion quaternion_multiply(struct Quaternion a, struct Quaternion b);
-struct Quaternion quaternion_multiplys(struct Quaternion q, float s);
+struct Quaternion quaternion_multiply_scalar(struct Quaternion q, float s);
 float quaternion_magnitude(struct Quaternion q);
 struct Quaternion quaternion_normalize(struct Quaternion q);
 struct Quaternion quaternion_conjugate(struct Quaternion q);
